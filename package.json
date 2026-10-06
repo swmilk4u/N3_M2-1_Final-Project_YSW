@@ -1,0 +1,16 @@
+{
+  "name": "nadosajang",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/domain.test.mjs tests/api.test.mjs",
+    "db:generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "drizzle-orm": "0.45.3",
+    "drizzle-kit": "0.31.11"
+  }
+}
