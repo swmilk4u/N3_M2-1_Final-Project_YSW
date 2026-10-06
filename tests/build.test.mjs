@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+const root=path.resolve(import.meta.dirname,'..');
+execFileSync(process.execPath,['scripts/build.mjs'],{cwd:root});
+test('Worker의 로컬 import가 업로드되는 server 디렉터리 안에 있다',async()=>{const server=path.join(root,'dist/server');for(const name of await fs.readdir(server)){if(name==='assets.mjs'||!/\.(mjs|js)$/.test(name))continue;const content=await fs.readFile(path.join(server,name),'utf8');for(const match of content.matchAll(/import\s[^;\n]*?from\s*['"](\.\.?\/[^'"]+)['"]/g)){const resolved=path.resolve(server,match[1]);assert.ok(resolved.startsWith(server+path.sep),`${name} imports outside Worker modules: ${match[1]}`);await fs.access(resolved);}}});
+test('빌드된 Worker는 정적 화면과 저장소 연결 실패 응답을 제공한다',async()=>{const {default:worker}=await import('../dist/server/index.js');const html=await worker.fetch(new Request('https://example.com/'),{});assert.equal(html.status,200);assert.ok((await html.text()).includes('나도사장'));const missing=await worker.fetch(new Request('https://example.com/api/state'),{});assert.equal(missing.status,503);});
