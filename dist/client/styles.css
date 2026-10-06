@@ -34,3 +34,19 @@
   #tools .section-heading .eyebrow,#home-notices .section-heading .eyebrow,.how-section .section-heading .eyebrow{font-size:.8125rem;line-height:1.5}
 }
 #tools .section-heading .eyebrow,#home-notices .section-heading .eyebrow,.how-section .section-heading .eyebrow{font-size:.8125rem;line-height:1.5}
+
+.idea-guide-links{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px;background:#eef3ff;border:1px solid #dce5f5;border-radius:12px;margin:22px 0}
+.idea-guide-links strong{font-size:1rem;line-height:1.6}.idea-guide-links p{font-size:.875rem;line-height:1.7;margin:5px 0 0;color:#475569}
+.idea-guide-links>div:last-child{display:flex;gap:8px;flex-wrap:wrap}.idea-guide-links .btn{font-size:.875rem;line-height:1.5}
+.item-guide-entry{padding:14px 24px;border-bottom:1px solid #edf0f4;background:#f7f9fc}.item-guide-entry .text-link{font-size:.875rem;line-height:1.6;text-align:left}
+.field-business-guide{background:#f5f8ff;border:1px solid #dce5f5;border-radius:10px;padding:16px;margin:0 0 18px}
+.field-business-guide>summary,.guide-example>summary{cursor:pointer;font-size:.9375rem;font-weight:650;line-height:1.6;color:#244bb5}
+.business-guide{font-size:.9375rem;line-height:1.75;overflow-wrap:anywhere}.business-guide>p{color:#475569;margin:16px 0}
+.business-guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.business-guide-grid section{padding:18px;background:#f5f8ff;border:1px solid #dce5f5;border-radius:10px}
+.business-guide-grid h3{font-size:1rem;line-height:1.6;margin:0 0 8px}.business-guide-grid p{font-size:.9375rem;line-height:1.75;margin:8px 0;color:#475569}
+.business-guide-grid .guide-question{color:#244bb5;font-weight:600}.business-guide .guide-note{padding:15px;background:#f5f7fa;border-radius:8px}
+.guide-example{border:1px solid #dfe3e9;border-radius:8px;padding:14px}.guide-example p{margin:12px 0 0}
+.guide-sources{display:flex;flex-direction:column;gap:8px;margin:14px 0;font-size:.875rem}.guide-sources a{color:#244bb5;text-decoration:underline;line-height:1.6}
+.field-business-guide .business-guide-grid{grid-template-columns:1fr}.field-business-guide .source-note{font-size:.875rem}
+@media(max-width:1100px){.idea-guide-links{align-items:flex-start;flex-direction:column}}
+@media(max-width:480px){.business-guide-grid{grid-template-columns:1fr}.idea-guide-links{padding:18px}.idea-guide-links>div:last-child{width:100%;flex-direction:column}.idea-guide-links .btn{width:100%}.field-business-guide{padding:14px}.item-guide-entry{padding:14px 20px}}
