@@ -1,3 +1,4 @@
+import {copySampleIdea} from './sample-ideas.js';
 import {businessGuides,guideContent,fieldGuide,appendGuideTemplate} from './business-guides.js';
 import {initialState,daysLeft,matchNotice,createDraft,escapeHtml as e,ideaGroups,inspectIdea} from './domain.js';
 import {notices,fields} from './notices.js';
@@ -37,6 +38,7 @@ function showGuide(kind){if(businessGuides[kind]){modal(`${modalHead(businessGui
 function updateCounts(text){if($('#count-with'))$('#count-with').textContent=text.length.toLocaleString();if($('#count-without'))$('#count-without').textContent=text.replace(/\s/g,'').length.toLocaleString();if($('#placeholder-count'))$('#placeholder-count').textContent=(text.match(/\[[^\]]+\]/g)||[]).length+'곳';}
 document.addEventListener('click',event=>{const el=event.target.closest('[data-action]');if(!el)return;event.preventDefault();const name=el.dataset.action,id=el.dataset.id;
  if(name==='nav'){flushSave();nav(el.dataset.path);}else if(name==='close')closeModal();else if(name==='new-idea')nav('ideas?new=1');
+ else if(name==='use-sample'){if(state.ideas.length>=100){toast('아이디어는 최대 100개까지 저장할 수 있어요.');return;}const idea=copySampleIdea(id);if(!idea)return;state.ideas.push(idea);persist().then(()=>{nav('ideas?id='+idea.id);toast('샘플을 내 초안으로 복사했어요. 예시 내용을 수정해주세요.');}).catch(()=>{});}
  else if(name==='bookmark'){state.bookmarks=state.bookmarks.includes(id)?state.bookmarks.filter(x=>x!==id):[...state.bookmarks,id];safeSave();render();}
  else if(name==='category'){filters.category=el.dataset.value;render();}else if(name==='reset-filters'){Object.assign(filters,{query:'',category:'전체',region:'전체',savedOnly:false,openOnly:true,sort:'recommended',field:'',stage:'',deadline:'',matchOnly:false,ideaId:''});render();}
  else if(name==='notice-mode'){filters.savedOnly=el.dataset.saved==='1';filters.matchOnly=false;render();}
