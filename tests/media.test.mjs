@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {getYouTubeEmbedUrl,heroMedia} from '../src/client/media.js';
+test('영상 주소가 없으면 CEO 너구리 포스터를 표시한다',()=>{const html=heroMedia({youtubeUrl:'',posterSrc:'/brand-poster.png',posterAlt:'CEO 너구리'});assert.ok(html.includes('<img'));assert.ok(html.includes('/brand-poster.png'));assert.ok(!html.includes('<iframe'));});
+test('유튜브 공유·시청·쇼츠 주소를 같은 임베드 주소로 정규화한다',()=>{for(const url of ['M7lc1UVf-VE','https://youtu.be/M7lc1UVf-VE?si=test','https://www.youtube.com/watch?v=M7lc1UVf-VE','https://www.youtube.com/shorts/M7lc1UVf-VE','https://www.youtube.com/embed/M7lc1UVf-VE'])assert.equal(getYouTubeEmbedUrl(url),'https://www.youtube.com/embed/M7lc1UVf-VE?playsinline=1');const html=heroMedia({youtubeUrl:'https://youtu.be/M7lc1UVf-VE'});assert.ok(html.includes('<iframe'));assert.ok(html.includes('title="나도사장 소개 영상"'));assert.ok(!html.includes('autoplay=1'));});
+test('잘못된 주소와 다른 사이트는 iframe으로 열지 않고 포스터를 유지한다',()=>{for(const url of ['',null,'javascript:alert(1)','https://youtube.com.evil.example/watch?v=M7lc1UVf-VE','https://example.com/M7lc1UVf-VE','https://www.youtube.com/watch?v=bad'])assert.equal(getYouTubeEmbedUrl(url),null);assert.ok(!heroMedia({youtubeUrl:'https://example.com/',posterSrc:'/brand-poster.png',posterAlt:'<script>'}).includes('<script>'));});

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
-    "test": "node --test tests/domain.test.mjs tests/api.test.mjs tests/build.test.mjs",
+    "test": "node --test tests/domain.test.mjs tests/api.test.mjs tests/build.test.mjs tests/media.test.mjs",
     "db:generate": "drizzle-kit generate"
   },
   "devDependencies": {
