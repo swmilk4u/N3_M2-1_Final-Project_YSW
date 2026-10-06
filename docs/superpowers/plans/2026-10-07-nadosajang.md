@@ -37,4 +37,4 @@
 ### Task 3: 배포와 인계
 **Files:** scripts/build.mjs, src/server/worker.mjs, README.md, .openai/hosting.json.
 - [x] 빌드·마이그레이션을 확인하고 소스/배포 파일을 준비한다.
-- [ ] 비공개 배포 결과와 소스 실행 방법을 인계한다.
+- [x] 비공개 배포 결과와 소스 실행 방법을 인계한다.
